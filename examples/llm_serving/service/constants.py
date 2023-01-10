@@ -3,7 +3,8 @@ from enum import Enum
 
 # Alpa serve url
 ALPA_SERVE_PORT = 20001
-ALPA_SERVE_URL = f"window.location.protocol + '//' + window.location.hostname + ':{ALPA_SERVE_PORT}/completions'"
+#ALPA_SERVE_URL = f"window.location.protocol + '//' + window.location.hostname + ':{ALPA_SERVE_PORT}/completions'"
+ALPA_SERVE_URL = f"'http://localhost:{ALPA_SERVE_PORT}/completions'"
 #ALPA_SERVE_URL = f'"completions"'
 
 # Generation params
@@ -11,10 +12,10 @@ NUM_BEAMS = 1
 NUM_RETURN_SEQ = 1
 
 # Authentication params
-USE_RECAPTCHA = False
-USE_API_KEYS = False
+USE_RECAPTCHA = True
+USE_API_KEYS = True
 ALLOW_NON_KEY_ACCESS = True
-KEYS_FILENAME = "/home/ubuntu/efs/alpa/examples/llm_serving/keys_file.json"
+KEYS_FILENAME = "/mnt/raid0/weltberg/alpa-1/examples/llm_serving/keys_file.json"
 
 # Scheduler params
 class AuthGroups(Enum):

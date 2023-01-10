@@ -26,7 +26,7 @@ def main(args):
     
     # Load the model
     model = get_model(model_name=args.model,
-                      path="~/opt_weights",
+                      path="/mnt/raid0/weltberg/opt_weights",
                       batch_size=args.n_prompts,
                       **generate_params)
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     parser.add_argument('--do-sample', action='store_true')
     parser.add_argument('--num-beams', type=int, default=1)
     parser.add_argument('--num-return-sequences', type=int, default=1)
-    parser.add_argument('--n-prompts', type=int, default=4)
+    parser.add_argument('--n-prompts', type=int, default=2)
     args = parser.parse_args()
 
     main(args)

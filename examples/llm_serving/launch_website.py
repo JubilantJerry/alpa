@@ -70,6 +70,7 @@ async def redirect(request):
     except ray.exceptions.RayActorError:
         manager = None
     if isinstance(ret, RelayException):
+        print(ret)
         ret = make_error_response(ret)
         ret = JSONResponse(ret, status_code=400)
     return ret

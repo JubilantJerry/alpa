@@ -39,9 +39,9 @@ class LangaugeModelWorker:
                  use_recaptcha: bool,
                  use_api_keys: bool,
                  allow_non_key_access: bool,
-                 max_seq_len: int = 1024,
+                 max_seq_len: int = 256,
                  max_batch_size: int = 4,
-                 logprobs_past_cache_size_limit: int = 4,
+                 logprobs_past_cache_size_limit: int = 1,
                  batch_wait_size_mult: int = 10,
                  batch_timeout: float = 1.0,
                  queue_timeout: float = 0.001):
@@ -75,6 +75,11 @@ class LangaugeModelWorker:
                                    max_seq_len=self.max_seq_len,
                                    max_batch_size=self.max_bs,
                                    do_sample=do_sample)
+        # Fake1 = namedtuple("Fake1", ["logits", "past_key_values"])
+        # class Fake:
+        #     def forward(*args, **kwargs):
+        #         return Fake1(torch.zeros(1, 1000, 1, device=torch_device), "asd")
+        # self.generator = Fake()
 
         # Authentication
         self.allowed_api_keys = []
@@ -441,7 +446,7 @@ class LangaugeModelWorker:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=str, default="alpa/opt-125m")
-    parser.add_argument("--path", type=str, default="~/opt_weights/")
+    parser.add_argument("--path", type=str, default="/mnt/raid0/weltberg/opt_weights/")
     parser.add_argument("--host", type=str, default="0.0.0.0")
     parser.add_argument("--torch-device", type=str, default="cpu")
     parser.add_argument("--tokenizer", type=str)
